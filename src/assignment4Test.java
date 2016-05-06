@@ -31,7 +31,7 @@ public class assignment4Test {
 
 	public static void main(String[] args) {
 		
-		computeTo(11);
+		computeTo(1000);
 		
 		
 	}
@@ -58,7 +58,7 @@ public class assignment4Test {
 		System.out.print("Content of: queueOfIntegers: ");
 		queueOfIntegers.display();
 
-		
+		Queue<Integer> queueTemp = new Queue<Integer>();				
 		Integer p;	
 		// 
 
@@ -70,20 +70,23 @@ public class assignment4Test {
 			// 5. Enqueue the value of p into queueOfPrimes
 			queueOfPrimes.enqueue(p);
 
-			
-			count++;
-			
+//			System.out.print("BEFORE Content of: queueOfPrimes:");
+//			queueOfPrimes.display();
+//			System.out.print("BEFORE Content of: queueOfIntegers:");
+//			queueOfIntegers.display();
+						
 			// 6. Create a new queue and fill the queue by using a while loop
-			Queue<Integer> queueTemp = new Queue<Integer>();			
+			queueTemp = new Queue<Integer>();			
 			while(!queueOfIntegers.isEmpty()){
+				
 				int front = queueOfIntegers.dequeue();
 				
-				System.out.print("Dividing " + p + " into " + front + ": ");
+//				System.out.print("Dividing " + p + " into " + front + ": ");
 				if((front%p) != 0){
-					System.out.print("Not divisible");
+//					System.out.print("Not divisible");
 					queueTemp.enqueue(front);
 				}
-				System.out.println("");
+//				System.out.println("");
 			}
 			
 			queueOfIntegers = queueTemp;
@@ -93,18 +96,18 @@ public class assignment4Test {
 			queueOfPrimes.display();
 			System.out.print("Content of: queueOfIntegers:");
 			queueOfIntegers.display();
-			
+						
 		}while(queueOfPrimes.back() < Math.sqrt(n));
-
-		queueOfPrimes.display();		
 		
-//		while(!queueOfIntegers.isEmpty()){
-//			p = queueOfIntegers.dequeue();
-//			queueOfPrimes.enqueue(p);
-//			count++;
-//		}
-//		queueOfPrimes.display();		
-//		queueOfIntegers.display();		
+		
+		while(!queueTemp.isEmpty()){
+			p = queueTemp.dequeue();
+			queueOfPrimes.enqueue(p);
+		}
+		System.out.print("Content of: queueOfPrimes:");
+
+		queueOfPrimes.display();	
+		queueTemp.display();
 
 		
 		
