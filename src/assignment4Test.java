@@ -31,10 +31,84 @@ public class assignment4Test {
 
 	public static void main(String[] args) {
 		
-
-		Queue queueOfIntegers = new Queue();
+		computeTo(11);
 		
+		
+	}
+	
+	public static void computeTo(int n){
+		
+		// Create queueOfIntegers & queueOfPrimes
+		Queue<Integer> queueOfIntegers 	= new Queue<Integer>();
+		Queue<Integer> queueOfPrimes 	= new Queue<Integer>();
+		
+		// Max value to compute to
+		int max = n;
+		int count = 0;
+		
+		if(n < 2 ){
+			throw new IllegalArgumentException("n needs to be greater than 2");
+		}
+		
+		// Create a queue named queueOfIntegers, enqueue it with consecutive
+		// integers 2 through n
+		for(int i = 2; i <= n; i++){
+			queueOfIntegers.enqueue(i);
+		}
+		System.out.print("Content of: queueOfIntegers: ");
+		queueOfIntegers.display();
 
+		
+		Integer p;	
+		// 
+
+		do{
+			// 4. Get the next prime number, p, by removing the first value in queueOfIntegers
+			p = queueOfIntegers.dequeue();
+			
+			System.out.println("Dequeuing a prime number: " + p);
+			// 5. Enqueue the value of p into queueOfPrimes
+			queueOfPrimes.enqueue(p);
+
+			
+			count++;
+			
+			// 6. Create a new queue and fill the queue by using a while loop
+			Queue<Integer> queueTemp = new Queue<Integer>();			
+			while(!queueOfIntegers.isEmpty()){
+				int front = queueOfIntegers.dequeue();
+				
+				System.out.print("Dividing " + p + " into " + front + ": ");
+				if((front%p) != 0){
+					System.out.print("Not divisible");
+					queueTemp.enqueue(front);
+				}
+				System.out.println("");
+			}
+			
+			queueOfIntegers = queueTemp;
+			
+			// Print out the contents of queueOfPrimes and Integers
+			System.out.print("Content of: queueOfPrimes:");
+			queueOfPrimes.display();
+			System.out.print("Content of: queueOfIntegers:");
+			queueOfIntegers.display();
+			
+		}while(queueOfPrimes.back() < Math.sqrt(n));
+
+		queueOfPrimes.display();		
+		
+//		while(!queueOfIntegers.isEmpty()){
+//			p = queueOfIntegers.dequeue();
+//			queueOfPrimes.enqueue(p);
+//			count++;
+//		}
+//		queueOfPrimes.display();		
+//		queueOfIntegers.display();		
+
+		
+		
+		
 	}
 
 }

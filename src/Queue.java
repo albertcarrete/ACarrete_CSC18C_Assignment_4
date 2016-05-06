@@ -22,6 +22,7 @@ public class Queue<T> implements QueueInterface<T>
 			current=current.getNext();
 			if ( current==null ) break;
 		}
+		System.out.println("");
 	}
 	
 	// ----- functions/methods in the interface that must be implemented -----
