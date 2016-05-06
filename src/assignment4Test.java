@@ -1,10 +1,11 @@
+import java.util.Scanner;
 /*
  * ================================================
  * Author: 		Albert Carrete
  * Class: 		CSC-18C
  * Project: 	Assignment 5 
  * ================================================
- * Eratosthenes With Queues
+ * Sieves Eratosthenes With Queues
  * 
  * 1. 	Create a queue named queueOfIntegers, enqueue 
  * 		it with consecutive integers 2 through n.
@@ -31,20 +32,20 @@ public class assignment4Test {
 
 	public static void main(String[] args) {
 		
-		computeTo(1000);
+		Scanner scanner = new Scanner(System.in);  
+		System.out.println("Enter a number to calculate primes to: ");
+		int n = scanner.nextInt(); 
 		
+		computePrimes(n);
 		
 	}
 	
-	public static void computeTo(int n){
+	public static void computePrimes(int n){
 		
 		// Create queueOfIntegers & queueOfPrimes
 		Queue<Integer> queueOfIntegers 	= new Queue<Integer>();
 		Queue<Integer> queueOfPrimes 	= new Queue<Integer>();
 		
-		// Max value to compute to
-		int max = n;
-		int count = 0;
 		
 		if(n < 2 ){
 			throw new IllegalArgumentException("n needs to be greater than 2");
@@ -69,24 +70,17 @@ public class assignment4Test {
 			System.out.println("Dequeuing a prime number: " + p);
 			// 5. Enqueue the value of p into queueOfPrimes
 			queueOfPrimes.enqueue(p);
-
-//			System.out.print("BEFORE Content of: queueOfPrimes:");
-//			queueOfPrimes.display();
-//			System.out.print("BEFORE Content of: queueOfIntegers:");
-//			queueOfIntegers.display();
-						
+	
 			// 6. Create a new queue and fill the queue by using a while loop
 			queueTemp = new Queue<Integer>();			
 			while(!queueOfIntegers.isEmpty()){
 				
 				int front = queueOfIntegers.dequeue();
 				
-//				System.out.print("Dividing " + p + " into " + front + ": ");
 				if((front%p) != 0){
-//					System.out.print("Not divisible");
 					queueTemp.enqueue(front);
 				}
-//				System.out.println("");
+				
 			}
 			
 			queueOfIntegers = queueTemp;
@@ -109,9 +103,6 @@ public class assignment4Test {
 		queueOfPrimes.display();	
 		queueTemp.display();
 
-		
-		
-		
 	}
 
 }
